@@ -29,47 +29,15 @@ import java.util.Properties;
 public class MybatisConfiguration implements TransactionManagementConfigurer{
     private static Logger logger = LoggerFactory.getLogger(MybatisConfiguration.class);
 
-    //  配置类型别名
-    @Value("${mybatis.typeAliasesPackage}")
-    private String typeAliasesPackage;
 
     @Value("${mybatis.mapperLocations}")
     private String mapperLocations;
 
-    //  加载全局的配置文件
-    @Value("${mybatis.configLocation}")
-    private String configLocation;
+
 
     @javax.annotation.Resource
     private DataSource dataSource;
 
-
-   @Bean
-   public SqlSessionFactory sqlSessionFactory(){
-        try{
-            SqlSessionFactoryBean sessionFactoryBean  = new SqlSessionFactoryBean();
-            sessionFactoryBean.setDataSource(dataSource);
-            sessionFactoryBean.setTypeAliasesPackage(typeAliasesPackage);
-
-            //Resource[] resources = new PathMatchingResourcePatternResolver().getResources(mapperLocations);
-            //sessionFactoryBean.setMapperLocations(resources);
-
-            //添加插件
-            Interceptor[] plugins = new Interceptor[]{pageHelper(),sqlPrintInterceptor()};
-
-            sessionFactoryBean.setPlugins(plugins);
-            return sessionFactoryBean.getObject();
-        }catch (IOException e){
-            e.printStackTrace();
-            logger.error("mybatis resolver mapper*xml is error", e);
-            return null;
-        }catch (Exception e1){
-            e1.printStackTrace();
-            logger.error("mybatis sqlSessionFactoryBean create error", e1);
-            return null;
-        }
-
-    }
 
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {

@@ -42,24 +42,7 @@ public class TestController {
                                   @RequestParam(value = "city",required =false) String city,
                                   @RequestParam(value = "orderField",required =false) String orderField,
                                   @RequestParam(value = "orderType",required =false) String orderType){
-    if (params!=null) {
-//      以map接收post请求参数再赋给相应的变量
-      if (type == null) {
-        type = ParamUtils.getType(type, params);
-      }
-      if (params.get("city") != null && city == null) {
-        city = params.get("city").toString();
-      }
-      if (params.get("orderField") != null && orderField == null) {
-        orderField = params.get("orderField").toString();
-      }
-      if (params.get("orderType") != null && orderType == null) {
-        orderType = params.get("orderType").toString();
-      }
-    }
     return  null;
-
-
   }
 
 }

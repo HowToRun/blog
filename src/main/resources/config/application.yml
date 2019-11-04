@@ -18,15 +18,14 @@ server:
 # mybatis 配置
 mybatis:
     mapperLocations: classpath:mapper/*.xml
-    typeAliasesPackage: com.bfd.largescreem.bean
-    configLocation: classpath:config/mybatis.xml
 
 spring:
 #    profiles:
 #        active: dev
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://***.**.*.***:3306/blog?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
+        url: jdbc:mysql://49.232.47.21:3306/blog_self?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
+#        url: jdbc:mysql://***.**.*.***:3306/blog?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
         username: root
         password: root
         #连接池的配置信息

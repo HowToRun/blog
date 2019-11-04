@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.dao.self.BlogSelfMapper" >
+    <!-- 通用查询映射结果 -->
+    <resultMap id="resultMap" type="com.blog.entity.self.BlogInfo">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="text" property="text" />
+        <result column="kind_id" property="kindId" />
+        <result column="kind_name" property="kindName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="comment_count" property="commentCount" />
+        <result column="praise_count" property="praiseCount" />
+    </resultMap>
+
+    <insert id="saveBlogInfo" parameterType="com.blog.entity.self.BlogInfo"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into blog_info (
+        kind_id,
+        kind_name,
+        title,
+        create_time
+        )values (
+        #{kindId},
+        #{kindName},
+        #{title},
+        now()
+        )
+    </insert>
+
+    <insert id="saveBlogText" parameterType="com.blog.entity.self.BlogInfo">
+        insert into blog_text(
+        blog_id,
+        text
+        )values (
+        #{id},
+        #{text}
+        )
+    </insert>
+    <select id="listBlog" resultMap="resultMap">
+        SELECT a.* ,b.text from blog_info a
+        LEFT JOIN blog_text b on a.id = b.blog_id
+        where 1=1
+        <if test="id != null">
+           and a.id = #{id}
+        </if>
+        <if test="title != null">
+           and a.title like concat('%',#{title},'%')
+        </if>
+    </select>
+</mapper>
+
