@@ -17,4 +17,6 @@ public interface BlogSelfService {
     void saveBlog(BlogInfo blogInfo);
 
     R listBlog(BlogInfo blogInfo, Integer pageNum, Integer pageSize);
+
+    R getArchives();
 }

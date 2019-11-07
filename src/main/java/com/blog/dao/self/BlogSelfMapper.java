@@ -22,4 +22,7 @@ public interface BlogSelfMapper {
     void saveBlogText(BlogInfo blogInfo);
 
     List<BlogInfo> listBlog(BlogInfo blogInfo);
+
+    List<BlogInfo> getArchives();
+
 }

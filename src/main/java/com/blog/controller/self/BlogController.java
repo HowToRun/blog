@@ -49,8 +49,12 @@ public class BlogController {
     public R list(BlogInfo blogInfo,
                   @RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,
                   @RequestParam(value = "pageSize",defaultValue = "15")Integer pageSize){
-        System.out.println(blogInfo);
         return blogSelfService.listBlog(blogInfo,pageNum,pageSize);
+    }
+    @ApiOperation("博客查询")
+    @RequestMapping(value = "/getArchives",method = {RequestMethod.GET})
+    public R getArchives(){
+        return blogSelfService.getArchives();
     }
 
 

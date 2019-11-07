@@ -44,4 +44,10 @@ public class BlogSelfServiceImpl implements BlogSelfService {
         return new R().ok(resultList);
 
     }
+
+    @Override
+    public R getArchives() {
+        List<BlogInfo> blogList = blogSelfMapper.getArchives();
+        return new R().ok(blogList);
+    }
 }
